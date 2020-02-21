@@ -5,17 +5,20 @@ import { api } from '../api/index';
 
 const Search = () => {
   const [categories, setCategories] = useState([]);
+  const [breeds, setBreeds] = useState([]);
 
-  const fetchData = async () => {
-    await api.getCategories().then(res => {
+  const fetchSearchOptions = async option => {
+    await api.getSearchOptions(option).then(res => {
       if (res.length !== 0) {
-        setCategories(res);
+        if (option === 'categories') setCategories(res);
+        if (option === 'breeds') setBreeds(res);
       }
     });
   };
 
   useEffect(() => {
-    fetchData();
+    fetchSearchOptions('categories');
+    fetchSearchOptions('breeds');
   }, []);
 
   return (
@@ -23,6 +26,8 @@ const Search = () => {
       {categories
         ? categories.map(cat => <h1 key={cat.id}>{cat.name}</h1>)
         : null}
+      <br />
+      {breeds ? breeds.map(brd => <h1 key={brd.id}>{brd.name}</h1>) : null}
     </div>
   );
 };

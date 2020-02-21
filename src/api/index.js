@@ -21,8 +21,8 @@ export const api = {
           return { error: 'There is an error. please try again later.' };
         }
       }),
-  getCategories: () =>
-    axios.get(`${BASE_URL}categories`).then(res => {
+  getSearchOptions: option =>
+    axios.get(`${BASE_URL}${option}`).then(res => {
       if (res.status === 200) {
         return res.data;
       } else {
