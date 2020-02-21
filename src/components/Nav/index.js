@@ -43,10 +43,8 @@ const Nav = () => {
     <Container>
       <Navs>
         {navs.map(nav => (
-          <List>
-            <Link key={nav.id} to={nav.path}>
-              {nav.name}
-            </Link>
+          <List key={nav.id}>
+            <Link to={nav.path}>{nav.name}</Link>
           </List>
         ))}
       </Navs>
